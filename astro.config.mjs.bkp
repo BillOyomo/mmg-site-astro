@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { unified } from '@astrojs/markdown-remark';
 import remarkBasePath from './src/plugins/remark-base-path.mjs';
 
 const BASE = '/mmg-site-astro/';
@@ -9,6 +10,8 @@ export default defineConfig({
   site: 'https://schege882.github.io',
   base: BASE,
   markdown: {
-    remarkPlugins: [[remarkBasePath, BASE]],
+    processor: unified({
+      remarkPlugins: [[remarkBasePath, BASE]],
+    }),
   },
 });
